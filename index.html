@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0a0a0f">
+<meta name="description" content="Nhova Digital Marketing â€” Creative digital marketing agency for content, social media, performance marketing, branding and web development.">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Nhova Digital Marketing">
+<link rel="manifest" id="pwa-manifest">
+<title>Nhova Digital Marketing | Turning Attention Into Impact</title>
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="apple-touch-icon" href="logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<style>
+/* â”€â”€ RESET & ROOT â”€â”€ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+:root {
+  --pink: #ff1f2d; --purple: #8f0010; --purple-light: #ff4d5a;
+  --dark: #0a0a0f; --dark-2: #12101a; --white: #ffffff; --gray: #aaa;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Rajdhani', sans-serif; background: var(--dark); color: var(--white); overflow-x: hidden; cursor: none; -webkit-font-smoothing: antialiased; }
+@media (hover: none) { body { cursor: auto; } .cursor, .cursor-ring { display: none !important; } }
+img { max-width: 100%; display: block; }
+
+/* â”€â”€ CURSOR â”€â”€ */
+.cursor { width: 10px; height: 10px; background: var(--pink); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width .2s, height .2s, background .2s; mix-blend-mode: screen; box-shadow: 0 0 12px var(--pink); }
+.cursor-ring { width: 34px; height: 34px; border: 1.5px solid var(--purple-light); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: width .25s, height .25s, border-color .25s; opacity: .6; }
+.cursor.hovered { width: 16px; height: 16px; background: var(--purple-light); }
+.cursor-ring.hovered { width: 50px; height: 50px; border-color: var(--pink); opacity: .9; }
+
+/* â”€â”€ BACKGROUND â”€â”€ */
+#stars-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+.blob { position: fixed; border-radius: 50%; filter: blur(120px); pointer-events: none; z-index: 0; animation: blobFloat 8s ease-in-out infinite alternate; }
+.blob-1 { width: 500px; height: 500px; background: radial-gradient(circle,rgba(255,31,45,.35) 0%,transparent 70%); left: -150px; top: 100px; }
+.blob-2 { width: 400px; height: 400px; background: radial-gradient(circle,rgba(255,31,45,.25) 0%,transparent 70%); right: -100px; bottom: 0; animation-delay: -3s; }
+.blob-3 { width: 300px; height: 300px; background: radial-gradient(circle,rgba(143,0,16,.3) 0%,transparent 70%); left: 40%; top: 20%; animation-delay: -5s; }
+@keyframes blobFloat { from { transform: translateY(0) scale(1); } to { transform: translateY(-40px) scale(1.08); } }
+
+/* â”€â”€ NAV â”€â”€ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 56px; padding-top: calc(16px + var(--safe-top));
+  background: rgba(10,10,15,.65); backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(160,85,247,.14);
+  animation: slideDown .7s ease both;
+}
+@keyframes slideDown { from { transform: translateY(-100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.nav-logo { display: flex; align-items: center; gap: 12px; font-family: 'Orbitron',sans-serif; font-size: 1.1rem; letter-spacing: .15em; color: var(--white); text-decoration: none; cursor: none; flex-shrink: 0; }
+
+.nav-logo-image { width: 135px; height: 54px; object-fit: contain; object-position: center; display: block; border-radius: 6px; }
+.hero-logo-watermark { position: absolute; width: min(760px, 78vw); height: min(760px, 78vw); object-fit: contain; opacity: .055; filter: saturate(1.35); pointer-events: none; user-select: none; z-index: -1; transform: translateY(1%); }
+.project-media iframe { width: 100%; height: 100%; border: 0; display: block; }
+.youtube-badge { position: absolute; top: 10px; left: 10px; background: linear-gradient(135deg,#ff1f2d,#8f0010); color: #fff; font-family: 'Orbitron',sans-serif; font-size: .52rem; letter-spacing: .12em; padding: 5px 11px; border-radius: 999px; pointer-events: none; box-shadow: 0 4px 16px rgba(255,31,45,.4); z-index: 3; }
+.whatsapp-float { position: fixed; right: 22px; bottom: 22px; z-index: 180; display: inline-flex; align-items: center; gap: 9px; padding: 12px 17px; border-radius: 999px; background: #16a34a; color: #fff; text-decoration: none; font-family: 'Rajdhani',sans-serif; font-size: .95rem; font-weight: 700; letter-spacing: .04em; box-shadow: 0 10px 28px rgba(0,0,0,.35); transition: transform .25s ease, box-shadow .25s ease; }
+.whatsapp-float:hover { transform: translateY(-4px) scale(1.03); box-shadow: 0 14px 36px rgba(22,163,74,.35); }
+.whatsapp-icon { width: 24px; height: 24px; display: grid; place-items: center; border: 2px solid rgba(255,255,255,.9); border-radius: 50%; font-size: .95rem; line-height: 1; }
+@media (max-width: 540px) { .nav-logo-image { width: 112px; height: 46px; } .whatsapp-float { right: 14px; bottom: 14px; padding: 11px 14px; } .whatsapp-float span:last-child { display: none; } }
+
+.logo-icon { width: 36px; height: 36px; border: 2px solid var(--pink); border-radius: 50%; display: flex; align-items: center; justify-content: center; animation: spin 8s linear infinite; }
+.logo-icon::before { content: ''; width: 10px; height: 10px; background: var(--pink); border-radius: 50%; box-shadow: 0 0 12px var(--pink); }
+@keyframes spin { to { transform: rotate(360deg); } }
+.nav-links { display: flex; gap: 36px; list-style: none; }
+.nav-links a { color: rgba(255,255,255,.8); text-decoration: none; font-size: .95rem; letter-spacing: .06em; font-weight: 600; cursor: none; position: relative; transition: color .3s; }
+.nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 1px; background: var(--pink); transform: scaleX(0); transform-origin: left; transition: transform .3s ease; }
+.nav-links a:hover, .nav-links a.active { color: var(--white); }
+.nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+.nav-right { display: flex; gap: 12px; align-items: center; }
+.btn-book { background: var(--purple); color: var(--white); border: none; padding: 11px 22px; border-radius: 999px; font-family: 'Rajdhani',sans-serif; font-size: .9rem; font-weight: 600; letter-spacing: .04em; cursor: none; position: relative; overflow: hidden; transition: transform .2s, box-shadow .3s; box-shadow: 0 0 20px rgba(255,77,90,.4); white-space: nowrap; }
+.btn-book::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg,var(--pink),var(--purple)); opacity: 0; transition: opacity .3s; }
+.btn-book:hover::before { opacity: 1; }
+.btn-book:hover { transform: scale(1.05); box-shadow: 0 0 32px rgba(255,31,45,.5); }
+.btn-book span { position: relative; z-index: 1; }
+
+/* Hamburger */
+.nav-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 6px; cursor: none; z-index: 101; }
+.nav-toggle span { display: block; width: 22px; height: 2px; background: var(--white); border-radius: 2px; transition: all .3s; }
+.nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Drawer */
+.nav-drawer { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(8,6,14,.97); backdrop-filter: blur(20px); z-index: 99; flex-direction: column; align-items: center; justify-content: center; gap: 0; padding: 80px 0 40px; opacity: 0; pointer-events: none; transition: opacity .3s ease; }
+.nav-drawer.open { opacity: 1; pointer-events: all; display: flex; animation: fadeIn .3s ease; }
+.nav-drawer a { display: block; width: 100%; text-align: center; padding: 18px 24px; color: rgba(255,255,255,.75); text-decoration: none; font-family: 'Orbitron',sans-serif; font-size: 1.1rem; letter-spacing: .15em; border-bottom: 1px solid rgba(255,77,90,.08); transition: color .2s, background .2s; cursor: none; }
+.nav-drawer a:hover { color: var(--pink); background: rgba(255,31,45,.06); }
+.drawer-book { margin-top: 32px; background: linear-gradient(135deg,#d60018,#8f0010); color: var(--white); border: none; padding: 16px 44px; border-radius: 999px; font-family: 'Orbitron',sans-serif; font-size: .9rem; letter-spacing: .1em; cursor: none; font-weight: 700; box-shadow: 0 4px 30px rgba(214,0,24,.4); }
+
+/* â”€â”€ HERO â”€â”€ */
+.hero { position: relative; min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 120px 24px 100px; text-align: center; z-index: 1; overflow: hidden; }
+.badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,77,90,.15); border: 1px solid rgba(255,77,90,.4); border-radius: 999px; padding: 8px 22px; font-family: 'Orbitron',sans-serif; font-size: .65rem; letter-spacing: .2em; color: rgba(255,255,255,.85); margin-bottom: 32px; opacity: 0; animation: fadeUp .7s .4s ease both; }
+.badge-dot { color: var(--pink); }
+.hero-title { font-family: 'Orbitron',sans-serif; font-size: clamp(2.8rem,9vw,8rem); font-weight: 900; line-height: .95; letter-spacing: -.01em; text-transform: uppercase; background: linear-gradient(135deg,#ffffff 0%,#ffffff 42%,#ff1f2d 43%,#ff1f2d 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 28px; opacity: 0; animation: fadeUp .8s .6s ease both; filter: drop-shadow(0 0 40px rgba(255,31,45,.3)); }
+.services-ticker { display: flex; align-items: center; flex-wrap: wrap; justify-content: center; font-size: .8rem; letter-spacing: .12em; color: rgba(255,255,255,.5); font-weight: 600; margin-bottom: 44px; opacity: 0; animation: fadeUp .8s .8s ease both; }
+.service-item { padding: 4px 12px; }
+.service-sep { color: rgba(255,77,90,.5); }
+.hero-cta { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-bottom: 64px; opacity: 0; animation: fadeUp .8s 1s ease both; }
+.btn-primary { background: linear-gradient(135deg,#d60018,#8f0010); color: var(--white); border: none; padding: 15px 34px; border-radius: 999px; font-family: 'Rajdhani',sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: .05em; cursor: none; position: relative; overflow: hidden; transition: transform .2s, box-shadow .3s; box-shadow: 0 4px 30px rgba(214,0,24,.5); min-height: 48px; }
+.btn-primary:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 8px 40px rgba(255,31,45,.6); }
+.btn-primary::after { content: ''; position: absolute; inset: 0; background: rgba(255,255,255,.1); opacity: 0; transition: opacity .2s; }
+.btn-primary:hover::after { opacity: 1; }
+.btn-secondary { background: rgba(255,255,255,.06); color: var(--white); border: 1px solid rgba(255,255,255,.2); padding: 15px 34px; border-radius: 999px; font-family: 'Rajdhani',sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: .05em; cursor: none; backdrop-filter: blur(8px); transition: all .3s; min-height: 48px; }
+.btn-secondary:hover { background: rgba(255,255,255,.12); border-color: rgba(255,77,90,.6); transform: translateY(-3px); box-shadow: 0 8px 30px rgba(143,0,16,.3); }
+.stats { display: flex; gap: 56px; align-items: center; justify-content: center; opacity: 0; animation: fadeUp .8s 1.2s ease both; flex-wrap: wrap; }
+.stat-item { text-align: center; }
+.stat-number { font-family: 'Orbitron',sans-serif; font-size: clamp(2rem,5vw,3.5rem); font-weight: 700; color: var(--pink); line-height: 1; text-shadow: 0 0 30px rgba(255,31,45,.5); display: block; }
+.stat-label { font-size: .8rem; color: rgba(255,255,255,.5); letter-spacing: .08em; margin-top: 6px; display: block; }
+.stat-sep { width: 1px; height: 48px; background: rgba(255,77,90,.25); }
+.scroll-indicator { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; opacity: 0; animation: fadeIn 1s 1.6s ease both; cursor: none; }
+.mouse-icon { width: 24px; height: 38px; border: 2px solid rgba(255,77,90,.5); border-radius: 12px; display: flex; justify-content: center; padding-top: 7px; }
+.mouse-wheel { width: 3px; height: 7px; background: var(--pink); border-radius: 2px; animation: scrollW 1.8s ease-in-out infinite; }
+@keyframes scrollW { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(10px); opacity: 0; } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* â”€â”€ SECTIONS COMMON â”€â”€ */
+.section-label { text-align: center; margin-bottom: 10px; font-family: 'Orbitron',sans-serif; font-size: .62rem; letter-spacing: .3em; color: var(--pink); opacity: .85; }
+.section-title { font-family: 'Orbitron',sans-serif; font-size: clamp(1.6rem,3.5vw,2.5rem); font-weight: 700; text-align: center; margin-bottom: 52px; background: linear-gradient(135deg,var(--pink),var(--purple-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .65s ease, transform .65s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* â”€â”€ SERVICES â”€â”€ */
+.services-section { position: relative; z-index: 1; padding: 96px 56px; background: rgba(18,16,26,.6); backdrop-filter: blur(10px); border-top: 1px solid rgba(255,77,90,.1); }
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap: 22px; max-width: 1100px; margin: 0 auto; }
+.service-card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,77,90,.2); border-radius: 20px; padding: 38px 26px; text-align: center; cursor: none; transition: all .35s ease; position: relative; overflow: hidden; }
+.service-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg,rgba(214,0,24,.08),rgba(143,0,16,.08)); opacity: 0; transition: opacity .3s; }
+.service-card:hover { transform: translateY(-8px); border-color: rgba(255,31,45,.5); box-shadow: 0 16px 50px rgba(214,0,24,.25); }
+.service-card:hover::before { opacity: 1; }
+.service-icon { font-size: 2.4rem; margin-bottom: 18px; display: block; }
+.service-card h3 { font-family: 'Orbitron',sans-serif; font-size: .85rem; letter-spacing: .1em; color: var(--white); margin-bottom: 10px; }
+.service-card p { color: rgba(255,255,255,.5); font-size: .88rem; line-height: 1.7; }
+.service-card { text-decoration: none; color: inherit; display: block; }
+.service-card .service-arrow { display: inline-block; margin-top: 16px; color: #d9b236; font-family: 'Orbitron',sans-serif; font-size: .62rem; letter-spacing: .12em; }
+
+/* â”€â”€ PROMOTION SECTION â”€â”€ */
+.promotion-section { position: relative; z-index: 1; padding: 96px 56px; background: rgba(18,16,26,.55); border-top: 1px solid rgba(255,77,90,.1); }
+.promotion-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; max-width: 1100px; margin: 0 auto; }
+.promotion-card { display:block; text-decoration:none; color:inherit; background:rgba(255,255,255,.04); border:1px solid rgba(255,77,90,.2); border-radius:20px; padding:32px 26px; transition:all .35s ease; }
+.promotion-card:hover { transform:translateY(-8px); border-color:rgba(255,31,45,.5); box-shadow:0 16px 50px rgba(214,0,24,.25); }
+.promotion-icon { font-size:2.3rem; display:block; margin-bottom:16px; }
+.promotion-card h3 { font-family:'Orbitron',sans-serif; font-size:.9rem; margin-bottom:10px; }
+.promotion-card p { color:rgba(255,255,255,.55); line-height:1.7; font-size:.9rem; }
+.promotion-card .service-arrow { display:inline-block; margin-top:16px; color:#d9b236; font-family:'Orbitron',sans-serif; font-size:.62rem; letter-spacing:.12em; }
+
+/* â”€â”€ MORE SERVICES â”€â”€ */
+.more-services-section { position:relative; z-index:1; padding:96px 56px; border-top:1px solid rgba(255,77,90,.1); }
+.more-services-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; max-width:1200px; margin:0 auto; }
+.more-service-card { display:block; text-decoration:none; color:inherit; background:rgba(255,255,255,.035); border:1px solid rgba(255,77,90,.18); border-radius:18px; padding:26px 20px; transition:all .3s ease; }
+.more-service-card:hover { transform:translateY(-6px); border-color:rgba(255,31,45,.5); box-shadow:0 12px 35px rgba(214,0,24,.18); }
+.more-service-card h3 { font-family:'Orbitron',sans-serif; font-size:.72rem; letter-spacing:.08em; margin:10px 0; }
+.more-service-card p { color:rgba(255,255,255,.48); font-size:.82rem; line-height:1.6; }
+.more-service-icon { font-size:1.8rem; }
+.more-service-card .service-arrow { display:inline-block; margin-top:14px; color:#d9b236; font-size:.58rem; letter-spacing:.12em; font-family:'Orbitron',sans-serif; }
+
+/* â”€â”€ TECHNICAL APPROACHES â”€â”€ */
+.tech-approaches { max-width:1200px; margin:54px auto 0; }
+.tech-approach-title { font-family:'Orbitron',sans-serif; font-size:.95rem; letter-spacing:.1em; color:var(--white); margin-bottom:20px; }
+.tech-approach-list { display:flex; flex-wrap:wrap; gap:10px; list-style:none; }
+.tech-approach-list li { padding:9px 14px; border:1px solid rgba(255,77,90,.22); background:rgba(255,255,255,.035); border-radius:999px; color:rgba(255,255,255,.62); font-size:.8rem; }
+.tech-details-btn { display:inline-flex; align-items:center; justify-content:center; margin-top:24px; min-height:46px; padding:12px 24px; border-radius:999px; background:linear-gradient(135deg,#d60018,#8f0010); color:var(--white); text-decoration:none; font-family:'Rajdhani',sans-serif; font-size:.9rem; font-weight:700; letter-spacing:.08em; box-shadow:0 4px 24px rgba(214,0,24,.35); transition:transform .2s,box-shadow .3s; }
+.tech-details-btn:hover { transform:translateY(-3px); box-shadow:0 8px 32px rgba(255,31,45,.5); }
+
+@media (max-width: 900px) { .promotion-grid { grid-template-columns:1fr 1fr; } .more-services-grid { grid-template-columns:1fr 1fr; } }
+@media (max-width: 540px) { .promotion-section, .more-services-section { padding:64px 20px; } .promotion-grid, .more-services-grid { grid-template-columns:1fr; } .tech-details-btn { width:100%; padding-inline:18px; } }
+
+
+/* ==========================================================================
+   ABOUT US / TEAM SECTION â€” EASY EDIT AREA
+   Change names, roles, bios and image filenames in the HTML below.
+   ========================================================================== */
+.about-section {
+  position: relative;
+  z-index: 1;
+  padding: 96px 56px;
+  border-top: 1px solid rgba(255,77,90,.1);
+}
+
+/* Main company introduction card â€” appears first. */
+.about-company-card {
+  max-width: 1100px;
+  margin: 0 auto 28px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,77,90,.2);
+  border-radius: 20px;
+  padding: 44px;
+}
+.about-company-card h3 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(1.05rem,2vw,1.5rem);
+  color: var(--white);
+  margin-bottom: 16px;
+}
+.about-company-card p {
+  color: rgba(255,255,255,.62);
+  font-size: .98rem;
+  line-height: 1.85;
+  max-width: 900px;
+}
+
+/* Team grid â€” add/remove team cards here without changing the layout CSS. */
+.team-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+/* Each person gets the same reusable card style. */
+.team-member-card, .team-final-card {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,77,90,.2);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: transform .35s ease, border-color .35s ease, box-shadow .35s ease;
+}
+.team-member-card:hover, .team-final-card:hover {
+  transform: translateY(-7px);
+  border-color: rgba(255,31,45,.5);
+  box-shadow: 0 16px 45px rgba(255,31,45,.16);
+}
+
+/* Haider's image area. Replace the image filename in HTML when needed. */
+.team-photo {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  background: linear-gradient(145deg, rgba(143,0,16,.55), rgba(255,31,45,.18));
+}
+.team-photo.nimra-photo { height: 220px; object-fit: cover; object-position: center 40%; background: #111; }
+
+/* Initials are used for team members until you add their photos. */
+.team-avatar {
+  height: 220px;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at center, rgba(255,31,45,.18), rgba(143,0,16,.08) 45%, transparent 72%);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.4rem;
+  font-weight: 900;
+  color: var(--pink);
+  text-shadow: 0 0 25px rgba(255,31,45,.45);
+}
+
+.team-member-info { padding: 22px; }
+.team-member-name {
+  font-family: 'Orbitron', sans-serif;
+  font-size: .95rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+.team-member-role {
+  font-size: .72rem;
+  color: var(--pink);
+  letter-spacing: .08em;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+.team-member-bio {
+  font-size: .82rem;
+  color: rgba(255,255,255,.46);
+  line-height: 1.65;
+}
+
+/* Final team card â€” spans the complete team row. */
+.team-final-card {
+  max-width: 1100px;
+  margin: 22px auto 0;
+  padding: 30px 34px;
+  text-align: center;
+}
+.team-final-card h3 {
+  font-family: 'Orbitron', sans-serif;
+  color: var(--white);
+  font-size: 1rem;
+  letter-spacing: .08em;
+  margin-bottom: 10px;
+}
+.team-final-card p {
+  color: rgba(255,255,255,.5);
+  line-height: 1.75;
+  font-size: .9rem;
+}
+
+/* â”€â”€ SKILLS â”€â”€ */
+.skills-section { position: relative; z-index: 1; padding: 80px 56px; background: rgba(18,16,26,.5); border-top: 1px solid rgba(255,77,90,.1); }
+.skills-outer { max-width: 1200px; margin: 0 auto; }
+.skills-cols { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; border: 1px solid rgba(255,77,90,.2); border-radius: 16px; overflow: hidden; margin-bottom: 52px; }
+.skill-col { padding: 26px 22px; border-right: 1px solid rgba(255,77,90,.15); }
+.skill-col:last-child { border-right: none; }
+.skill-col h4 { font-family: 'Orbitron',sans-serif; font-size: .78rem; letter-spacing: .1em; color: var(--white); margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,77,90,.2); }
+.skill-col ul { list-style: none; }
+.skill-col ul li { color: rgba(255,255,255,.55); font-size: .86rem; line-height: 1.9; position: relative; padding-left: 14px; }
+.skill-col ul li::before { content: 'â€º'; position: absolute; left: 0; color: var(--purple-light); }
+.tech-title { font-family: 'Orbitron',sans-serif; font-size: .95rem; letter-spacing: .1em; color: var(--white); margin-bottom: 22px; }
+.tech-icons { display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start; }
+.tech-icon-img { display: flex; flex-direction: column; align-items: center; gap: 8px; cursor: none; transition: transform .25s, filter .25s; }
+.tech-icon-img:hover { transform: translateY(-6px) scale(1.1); filter: drop-shadow(0 6px 18px rgba(255,31,45,.45)); }
+.tech-icon-img img { width: 52px; height: 52px; object-fit: contain; background: transparent; }
+.tech-icon-img span { font-family: 'Rajdhani',sans-serif; font-size: .68rem; letter-spacing: .06em; color: rgba(255,255,255,.45); white-space: nowrap; }
+
+/* â”€â”€ PROJECTS â”€â”€ */
+.projects-section { position: relative; z-index: 1; padding: 96px 56px; border-top: 1px solid rgba(255,77,90,.1); }
+.projects-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; max-width: 1300px; margin: 0 auto; }
+.project-card { background: rgba(255,255,255,.03); border: 1px solid rgba(255,77,90,.2); border-radius: 20px; overflow: hidden; cursor: none; transition: all .4s ease; }
+.project-card:hover { transform: translateY(-8px); border-color: rgba(255,31,45,.5); box-shadow: 0 20px 60px rgba(255,77,90,.2); }
+
+/* Media wrapper â€” holds video or image */
+.project-media { position: relative; width: 100%; aspect-ratio: 16/9; background: #000; overflow: hidden; }
+.project-media video { width: 100%; height: 100%; display: block; object-fit: cover; cursor: auto; }
+.project-media img { width: 100%; height: 100%; display: block; object-fit: contain; object-position: center center; background: #000; transition: transform .5s ease; }
+.project-card:hover .project-media img { transform: scale(1.06); }
+/* Overlay must NOT block video controls â€” pointer-events: none */
+.project-media-overlay { position: absolute; inset: 0; background: linear-gradient(135deg,rgba(214,0,24,.12),rgba(143,0,16,.12)); opacity: 0; transition: opacity .3s; pointer-events: none; }
+.project-card:hover .project-media-overlay { opacity: 1; }
+/* Badge floats above video but doesn't intercept clicks */
+.media-badge { position: absolute; top: 10px; left: 10px; background: linear-gradient(135deg,var(--pink),var(--purple)); color: #fff; font-family: 'Orbitron',sans-serif; font-size: .52rem; letter-spacing: .15em; padding: 5px 11px; border-radius: 999px; pointer-events: none; box-shadow: 0 4px 16px rgba(255,31,45,.4); z-index: 2; }
+.media-badge.image { background: linear-gradient(135deg,var(--purple),var(--purple-light)); }
+
+/* Legacy wrappers kept for compatibility */
+.project-video-wrap { position: relative; width: 100%; aspect-ratio: 16/9; background: #000; overflow: hidden; }
+.project-video-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
+.vid-badge { position: absolute; top: 10px; left: 10px; background: linear-gradient(135deg,var(--pink),var(--purple)); color: #fff; font-family: 'Orbitron',sans-serif; font-size: .52rem; letter-spacing: .15em; padding: 5px 11px; border-radius: 999px; pointer-events: none; box-shadow: 0 4px 16px rgba(255,31,45,.4); }
+.project-img-wrap { width: 100%; aspect-ratio: 16/9; overflow: hidden; position: relative; display: flex; align-items: center; justify-content: center; }
+.project-img-wrap img { width: 100%; height: 100%; object-fit: contain; object-position: center center; background: #000; transition: transform .5s ease; }
+.project-card:hover .project-img-wrap img { transform: scale(1.06); }
+.project-img-overlay { position: absolute; inset: 0; background: linear-gradient(135deg,rgba(214,0,24,.15),rgba(143,0,16,.15)); opacity: 0; transition: opacity .3s; pointer-events: none; }
+.project-card:hover .project-img-overlay { opacity: 1; }
+
+.project-info { padding: 16px 18px 20px; display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+.project-info-left { flex: 1; }
+.project-type { font-family: 'Orbitron',sans-serif; font-size: .55rem; letter-spacing: .18em; color: var(--pink); margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+.project-type-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--pink); box-shadow: 0 0 8px var(--pink); flex-shrink: 0; }
+.project-type-dot.img { background: var(--purple-light); box-shadow: 0 0 8px var(--purple-light); }
+.pd-img { background: var(--purple-light); box-shadow: 0 0 8px var(--purple-light); }
+.project-title { font-family: 'Orbitron',sans-serif; font-size: .85rem; font-weight: 700; color: var(--white); letter-spacing: .06em; margin-bottom: 4px; }
+.project-desc { color: rgba(255,255,255,.4); font-size: .8rem; line-height: 1.5; }
+.project-tag { flex-shrink: 0; background: rgba(255,31,45,.1); border: 1px solid rgba(255,31,45,.3); border-radius: 999px; padding: 5px 12px; font-family: 'Orbitron',sans-serif; font-size: .52rem; letter-spacing: .1em; color: var(--pink); white-space: nowrap; align-self: flex-start; margin-top: 2px; }
+.project-tag.img { background: rgba(255,77,90,.1); border-color: rgba(255,77,90,.3); color: var(--purple-light); }
+.img-ph { font-family: 'Orbitron',sans-serif; font-size: .58rem; letter-spacing: .15em; color: rgba(255,255,255,.22); }
+
+/* â”€â”€ CONTACT â”€â”€ */
+.contact-section { position: relative; z-index: 1; padding: 96px 56px; text-align: center; background: rgba(18,16,26,.5); border-top: 1px solid rgba(255,77,90,.1); }
+.contact-section p { color: rgba(255,255,255,.5); font-size: 1.05rem; max-width: 480px; margin: 0 auto 38px; line-height: 1.8; }
+
+/* â”€â”€ MODAL â”€â”€ */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.78); backdrop-filter: blur(12px); z-index: 200; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity .3s; padding: 20px; }
+.modal-overlay.active { opacity: 1; pointer-events: all; }
+.modal { background: rgba(10,8,18,.99); border: 1px solid rgba(255,77,90,.3); border-radius: 24px; padding: 44px 40px; width: min(520px,100%); position: relative; transform: scale(.92) translateY(24px); transition: transform .35s cubic-bezier(.34,1.56,.64,1); max-height: 90vh; overflow-y: auto; }
+.modal-overlay.active .modal { transform: scale(1) translateY(0); }
+.modal h2 { font-family: 'Orbitron',sans-serif; font-size: 1.25rem; letter-spacing: .1em; margin-bottom: 6px; background: linear-gradient(135deg,var(--pink),var(--purple-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.modal > p { color: rgba(255,255,255,.4); font-size: .88rem; margin-bottom: 28px; }
+.modal-close { position: absolute; top: 16px; right: 16px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); border-radius: 50%; width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.5); font-size: 1rem; cursor: none; transition: all .2s; }
+.modal-close:hover { background: rgba(255,31,45,.15); border-color: var(--pink); color: var(--pink); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; font-family: 'Orbitron',sans-serif; font-size: .72rem; letter-spacing: .12em; color: rgba(255,255,255,.45); margin-bottom: 7px; }
+.form-group input, .form-group select, .form-group textarea { width: 100%; background: rgba(255,255,255,.05); border: 1px solid rgba(255,77,90,.25); border-radius: 10px; padding: 12px 15px; color: var(--white); font-family: 'Rajdhani',sans-serif; font-size: .95rem; outline: none; transition: border-color .2s, box-shadow .2s; cursor: none; resize: none; -webkit-appearance: none; appearance: none; min-height: 46px; }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--purple-light); box-shadow: 0 0 0 3px rgba(255,77,90,.15); }
+.form-group select option { background: #12101a; color: var(--white); }
+.form-submit { width: 100%; padding: 14px; margin-top: 6px; background: linear-gradient(135deg,#d60018,#8f0010); color: var(--white); border: none; border-radius: 10px; font-family: 'Orbitron',sans-serif; font-size: .82rem; font-weight: 700; letter-spacing: .12em; cursor: none; transition: all .3s; box-shadow: 0 4px 24px rgba(214,0,24,.4); min-height: 48px; }
+.form-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 36px rgba(255,31,45,.5); }
+.form-submit:disabled { opacity: .5; transform: none; }
+.form-msg { margin-top: 12px; text-align: center; font-size: .85rem; min-height: 20px; }
+.form-msg.success { color: #a3e635; }
+.form-msg.error { color: #f87171; }
+
+/* â”€â”€ FOOTER â”€â”€ */
+footer { position: relative; z-index: 1; text-align: center; padding: 32px 24px; padding-bottom: calc(32px + var(--safe-bottom)); color: rgba(255,255,255,.2); font-size: .78rem; letter-spacing: .08em; border-top: 1px solid rgba(255,77,90,.08); }
+footer a { color: var(--purple-light); text-decoration: none; cursor: none; }
+footer a:hover { color: var(--pink); }
+
+/* â”€â”€ PWA BANNER â”€â”€ */
+#pwa-banner { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: rgba(18,16,26,.96); border: 1px solid rgba(255,77,90,.35); border-radius: 16px; padding: 14px 20px; display: none; align-items: center; gap: 16px; z-index: 150; box-shadow: 0 8px 40px rgba(143,0,16,.3); backdrop-filter: blur(16px); width: min(420px,calc(100vw - 40px)); }
+#pwa-banner.show { display: flex; }
+#pwa-banner p { font-size: .88rem; color: rgba(255,255,255,.75); flex: 1; }
+#pwa-banner strong { color: var(--white); font-family: 'Orbitron',sans-serif; font-size: .75rem; }
+.pwa-install-btn { background: linear-gradient(135deg,var(--pink),var(--purple)); color: var(--white); border: none; padding: 9px 18px; border-radius: 999px; font-family: 'Rajdhani',sans-serif; font-size: .85rem; font-weight: 700; cursor: pointer; white-space: nowrap; flex-shrink: 0; }
+.pwa-dismiss { background: none; border: none; color: rgba(255,255,255,.3); font-size: 1.1rem; cursor: pointer; padding: 4px; flex-shrink: 0; }
+
+/* â”€â”€ RESPONSIVE â”€â”€ */
+@media (max-width: 1100px) {
+  .projects-grid { grid-template-columns: repeat(2,1fr); }
+  .skills-cols { grid-template-columns: repeat(2,1fr); }
+  .skill-col:nth-child(2) { border-right: none; }
+  .skill-col:nth-child(3) { border-top: 1px solid rgba(255,77,90,.15); }
+  .skill-col:nth-child(4) { border-top: 1px solid rgba(255,77,90,.15); }
+}
+/* At tablet width, show two team cards per row. */
+@media (max-width: 900px) {
+  .team-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  nav { padding: 14px 20px; padding-top: calc(14px + var(--safe-top)); }
+  .nav-links { display: none; }
+  .nav-toggle { display: flex; }
+  .btn-book { display: none; }
+  .hero { padding: 90px 18px 80px; }
+  .stats { gap: 24px; }
+  .stat-sep { display: none; }
+  .services-section, .about-section, .skills-section, .projects-section, .contact-section { padding: 64px 20px; }
+  .services-grid { grid-template-columns: 1fr 1fr; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .skills-cols { grid-template-columns: 1fr 1fr; }
+  .skill-col:nth-child(2) { border-right: none; }
+  .skill-col:nth-child(3) { border-top: 1px solid rgba(255,77,90,.1); }
+  .skill-col:nth-child(4) { border-top: 1px solid rgba(255,77,90,.1); }
+  .form-row { grid-template-columns: 1fr; }
+  .modal { padding: 36px 24px; }
+  .team-grid { gap: 14px; }
+  .team-photo, .team-avatar { height: 200px; }
+}
+@media (max-width: 540px) {
+  .services-grid { grid-template-columns: 1fr; }
+  .skills-cols { grid-template-columns: 1fr; }
+  .skill-col { border-right: none !important; border-top: 1px solid rgba(255,77,90,.1); }
+  .skill-col:first-child { border-top: none; }
+  .about-company-card { padding: 28px 22px; }
+  .team-member-info { padding: 22px; }
+  .hero-title { font-size: clamp(2.4rem,12vw,3.5rem); }
+}
+@media (max-width: 380px) {
+  .btn-primary, .btn-secondary { padding: 13px 22px; font-size: .9rem; }
+}
+</style>
+</head>
+<body>
+<!-- ======================================================================
+     NHOVA WEBSITE â€” QUICK EDIT GUIDE
+     ----------------------------------------------------------------------
+     BRAND:       Edit <title>, meta description and visible brand text.
+     LOGO:        Replace logo.png with your new logo if needed.
+    WHATSAPP:    Search for 918306940375 to change the WhatsApp number.
+     ABOUT TEAM:  Edit names, roles, bios and image filenames in #about.
+     PROJECTS:    Edit project cards inside #projects.
+     SERVICES:    Each service has its own dedicated HTML page with editable pricing/content.
+     MORE SERVICES: Brand logo, cards, posters, catalogues, portfolio and promotion services.
+     YOUTUBE:     Add data-youtube-url="YOUR_YOUTUBE_URL" to a project card.
+     COLORS:      Edit --pink / --purple / --purple-light in :root.
+     FONTS:       Change the Google Fonts <link> in <head>.
+     IMPORTANT:   Keep this guide when editing so future changes stay easy.
+     ====================================================================== -->
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+<canvas id="stars-canvas"></canvas>
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
+
+<!-- PWA Install Banner -->
+<div id="pwa-banner">
+  <p><strong>Nhova Digital Marketing</strong><br>Add to home screen for the best experience.</p>
+  <button class="pwa-install-btn" id="pwaInstallBtn">Install</button>
+  <button class="pwa-dismiss" id="pwaDismiss" aria-label="Dismiss">&#10005;</button>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a class="nav-logo" href="#hero" aria-label="Nhova Digital Marketing â€” Home">
+    <img class="nav-logo-image" src="logo.png" alt="Nhova Digital Marketing logo">
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#more-services">More Services</a></li>
+    <li><a href="#about">About Us</a></li>
+    <li><a href="#projects">Work</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="btn-book" onclick="openModal()"><span>Let's Start Your Project</span></button>
+    <button class="nav-toggle" id="navToggle" onclick="toggleDrawer()" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Drawer -->
+<nav class="nav-drawer" id="navDrawer" aria-label="Mobile menu">
+  <a href="#hero" onclick="closeDrawer()">Home</a>
+  <a href="#services" onclick="closeDrawer()">Services</a>
+  <a href="#more-services" onclick="closeDrawer()">More Services</a>
+  <a href="#about" onclick="closeDrawer()">About Us</a>
+  <a href="#projects" onclick="closeDrawer()">Work</a>
+  <a href="#contact" onclick="closeDrawer()">Contact</a>
+  <button class="drawer-book" onclick="closeDrawer();openModal()">Let's Start Your Project</button>
+</nav>
+
+
+  
+
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <img class="hero-logo-watermark" src="logo.png" alt="" aria-hidden="true">
+  <!-- EDIT HERO BADGE HERE: Change the agency descriptor without changing the layout. -->
+  <div class="badge"><span class="badge-dot">&#10024;</span> NHOVA DIGITAL MARKETING <span class="badge-dot">&#10024;</span></div>
+  <h1 class="hero-title">TURNING ATTENTION<br>INTO IMPACT</h1>
+  <div class="services-ticker">
+    <span class="service-item">SHOOTING</span><span class="service-sep">|</span>
+    <span class="service-item">EDITING</span><span class="service-sep">|</span>
+    <span class="service-item">PERFORMANCE MARKETING</span><span class="service-sep">|</span>
+    <span class="service-item">GRAPHIC</span><span class="service-sep">|</span>
+    <span class="service-item">SOCIAL MEDIA MANAGEMENT</span><span class="service-sep">|</span>
+    <span class="service-item">VOICE CALL CAMPAIGNS</span><span class="service-sep">|</span>
+  </div>
+  <div class="hero-cta">
+    <button class="btn-primary" onclick="openModal()">Let's Start Your Project</button>
+    <button class="btn-secondary" onclick="scrollToaboutme()">about us </button>
+  </div>
+  <div class="stats">
+    <div class="stat-item">
+      <!-- EDIT STAT 01 HERE: Project count. -->
+      <span class="stat-number" data-target="100" data-suffix="+">0</span>
+      <span class="stat-label">Projects</span>
+    </div>
+    <div class="stat-sep"></div>
+    <div class="stat-item">
+      <!-- EDIT STAT 02 HERE: Client count. -->
+      <span class="stat-number" data-target="20" data-suffix="+">0</span>
+      <span class="stat-label">Clients</span>
+    </div>
+    <div class="stat-sep"></div>
+    <div class="stat-item">
+      <!-- EDIT STAT 03 HERE: Years active. -->
+      <span class="stat-number" data-target="1" data-suffix="">0</span>
+      <span class="stat-label">Year</span>
+    </div>
+  </div>
+  <div class="scroll-indicator" onclick="scrollToServices()">
+    <div class="mouse-icon"><div class="mouse-wheel"></div></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<!-- EASY EDIT: Every service card below links to its own dedicated service HTML page. -->
+<section class="services-section" id="services">
+  <p class="section-label">CORE SERVICES</p>
+  <h2 class="section-title">OUR SERVICES</h2>
+  <div class="services-grid">
+
+    <!-- EDIT SERVICE 01: Shooting -->
+    <a class="service-card" href="shooting.html">
+      <span class="service-icon">&#128247;</span>
+      <h3>SHOOTING</h3>
+      <p>Professional photo and video shoots created around your brand story.</p>
+      <span class="service-arrow">VIEW DETAILS &#8594;</span>
+    </a>
+
+    <!-- EDIT SERVICE 02: Editing -->
+    <a class="service-card" href="editing.html">
+      <span class="service-icon">&#9986;</span>
+      <h3>EDITING</h3>
+      <p>Reels, ads and brand videos with clean editing, pacing, graphics and grading.</p>
+      <span class="service-arrow">VIEW DETAILS &#8594;</span>
+    </a>
+
+    <!-- EDIT SERVICE 03: Performance Marketing -->
+    <a class="service-card" href="performance-marketing.html">
+      <span class="service-icon">&#128200;</span>
+      <h3>PERFORMANCE MARKETING</h3>
+      <p>Campaign strategy, audience targeting, optimisation and conversion-focused advertising.</p>
+      <span class="service-arrow">VIEW DETAILS &#8594;</span>
+    </a>
+
+    <!-- EDIT SERVICE 04: Graphic Design -->
+    <a class="service-card" href="graphic-design.html">
+      <span class="service-icon">&#127912;</span>
+      <h3>GRAPHIC DESIGN</h3>
+      <p>Scroll-stopping creative for ads, social media, campaigns and brand communication.</p>
+      <span class="service-arrow">VIEW DETAILS &#8594;</span>
+    </a>
+
+    <!-- EDIT SERVICE 05: Social Media Management -->
+    <a class="service-card" href="social-media.html">
+      <span class="service-icon">&#128241;</span>
+      <h3>SOCIAL MEDIA MANAGEMENT</h3>
+      <p>Content planning, publishing, community management and growth-focused execution.</p>
+      <span class="service-arrow">VIEW DETAILS &#8594;</span>
+    </a>
+
+    <!-- EDIT SERVICE 06: Voice Call Campaign -->
+    <a class="service-card" href="voice-call.html">
+      <span class="service-icon">&#128222;</span>
+      <h3>VOICE CALL CAMPAIGN</h3>
+      <p>Structured voice-call outreach for offers, follow-ups, lead generation and reminders.</p>
+      <span class="service-arrow">VIEW DETAILS &#8594;</span>
+    </a>
+
+  </div>
+</section>
+
+<!-- ======================================================================
+     ABOUT US â€” EASY EDIT SECTION
+     1. Edit the company introduction in the first card.
+     2. Edit each person's NAME / ROLE / BIO below.
+     3. For Haider's photo, change src="haider-ali.jpg" to your real filename.
+     4. For other members, replace the initials boxes with <img> if you add photos.
+     ====================================================================== -->
+<section class="about-section" id="about">
+  <!-- Section heading shown in the navigation and hero button. -->
+  <h2 class="section-title">ABOUT US</h2>
+
+  <!-- COMPANY INTRO â€” this is intentionally the first box. -->
+  <div class="about-company-card">
+    <h3>ABOUT NHOVA DIGITAL MARKETING</h3>
+    <p>
+      Nhova Digital Marketing is a startup focused on promoting businesses and helping brands build a stronger digital presence.
+      We work with businesses to improve their social media, content, branding, digital campaigns and online communication.
+      Our goal is simple: turn attention into meaningful impact, visibility and growth.
+    </p>
+  </div>
+
+  <!-- TEAM MEMBERS â€” add or remove cards here. The grid automatically adjusts. -->
+  <div class="team-grid">
+
+    <!-- TEAM MEMBER 01 â€” FOUNDER -->
+    <article class="team-member-card">
+      <!-- EDIT PHOTO: replace "haider-ali.jpg" with your actual image filename. -->
+      <img class="team-photo" src="team/haider.jpeg" alt="Haider Ali â€” Founder and CEO of Nhova Digital Marketing"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+      <!-- Fallback shown automatically if the photo is not available. -->
+      <div class="team-avatar" style="display:none;">HA</div>
+      <div class="team-member-info">
+        <!-- EDIT NAME HERE -->
+        <div class="team-member-name">HAIDER ALI</div>
+        <!-- EDIT ROLE HERE -->
+        <div class="team-member-role">Founder and CEO</div>
+        <!-- EDIT INTRO HERE -->
+        <p class="team-member-bio">Founder and CEO of Nhova Digital Marketing, leading the agency's vision, strategy and creative direction while building practical digital solutions for growing businesses.</p>
+      </div>
+    </article>
+
+    <!-- TEAM MEMBER 02 â€” CO-FOUNDER AND DM MANAGER -->
+    <article class="team-member-card">
+      <img class="team-photo" src="team/hasan.jpeg" alt="Hasan Jafri â€” Co-founder and DM Manager of Nhova Digital Marketing"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+      <div class="team-avatar" style="display:none;">HJ</div>
+      <div class="team-member-info">
+        <!-- EDIT NAME HERE -->
+        <div class="team-member-name">HASAN JAFRI</div>
+        <!-- EDIT ROLE HERE -->
+        <div class="team-member-role">Co-founder and DM Manager</div>
+        <!-- EDIT INTRO HERE -->
+        <p class="team-member-bio">Leads digital marketing management, campaign coordination, client communication and day-to-day digital strategy execution.</p>
+      </div>
+    </article>
+
+    <!-- TEAM MEMBER 03 â€” CONTENT WRITING MANAGER -->
+    <article class="team-member-card">
+      <img class="team-photo nimra-photo" src="team/nimra.jpeg" alt="Nimra Hussain â€” Content Writing Manager of Nhova Digital Marketing"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+      <div class="team-avatar" style="display:none;">NH</div>
+      <div class="team-member-info">
+        
+        <!-- EDIT NAME HERE -->
+        <div class="team-member-name">NIMRA HUSSAIN</div>
+        <!-- EDIT ROLE HERE -->
+        <div class="team-member-role">Content Writing Manager</div>
+        <!-- EDIT INTRO HERE -->
+        <p class="team-member-bio">Handles content planning, copywriting, campaign messaging and brand communication to keep every piece of content clear and engaging.</p>
+      </div>
+    </article>
+
+    <!-- TEAM MEMBER 04 â€” PROJECT MANAGER &amp; ASSET MANAGER -->
+    <article class="team-member-card">
+      <img class="team-photo" src="team/sohail.jpeg" alt="Sohail Khan â€” Project Manager &amp; Asset Manager of Nhova Digital Marketing"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+      <div class="team-avatar" style="display:none;">SK</div>
+      <div class="team-member-info">
+        <!-- EDIT NAME HERE -->
+        <div class="team-member-name">SOHAIL KHAN</div>
+        <!-- EDIT ROLE HERE -->
+        <div class="team-member-role">Project Manager &amp; Asset Manager</div>
+        <!-- EDIT INTRO HERE -->
+        <p class="team-member-bio">Manages creative assets, project files, media resources and the smooth organization of materials used across client campaigns.</p>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- FINAL TEAM BOX â€” company-wide team introduction. -->
+  <div class="team-final-card">
+    <h3>THE NHOVA TEAM</h3>
+    <!-- EDIT TEAM DESCRIPTION HERE -->
+    <p>
+      A growing team of creative, marketing and digital professionals working together to promote businesses, create meaningful content and build stronger digital brands. Special thanks to our Content Writing Executive, Business Analyst and Business Development Executive for helping bring our services to the world.
+    </p>
+  </div>
+</section>
+
+<!-- MORE SERVICES -->
+<!-- EASY EDIT: Add/remove a card below. Change only the href, title, icon and description. -->
+<section class="more-services-section" id="more-services">
+  <p class="section-label">EXPANDED CREATIVE SERVICES</p>
+  <h2 class="section-title">MORE SERVICES</h2>
+  <div class="more-services-grid">
+
+    <!-- EDIT MORE SERVICE: Brand Logo Design -->
+    <a class="more-service-card" href="brand-logo.html">
+      <span class="more-service-icon">&#127919;</span>
+      <h3>BRAND LOGO DESIGN</h3>
+      <p>Distinctive logo concepts and brand-ready visual identity foundations.</p>
+      <span class="service-arrow">VIEW DETAILS &#8594;</span>
+    </a>
+
+    <!-- EDIT MORE SERVICE: Brand Card -->
+    <a class="more-service-card" href="brand-card.html">
+      <span class="more-service-icon">&#128179;</span>
+      <h3>BRAND CARD DESIGN</h3>
+      <p>Professional business and brand cards designed for print and digital use.</p>
+      <span class="service-arrow">VIEW DETAILS &#8594;</span>
+    </a>
+
+    <!-- EDIT MORE SERVICE: Posters -->
+    <a class="more-service-card" href="poster.html">
+      <span class="more-service-icon">&#128444;</span>
+      <h3>POSTERS</h3>
+      <p>Campaign, event, promotional and social posters built for attention.</p>
+      <span class="service-arrow">VIEW DETAILS &#8594;</span>
+    </a>
+
+    <!-- EDIT MORE SERVICE: Catalogue -->
+    <a class="more-service-card" href="catalogue-design.html">
+      <span class="more-service-icon">&#128218;</span>
+      <h3>CATALOGUE DESIGN</h3>
+      <p>Product and service catalogues structured to explain, showcase and sell.</p>
+      <span class="service-arrow">VIEW DETAILS &#8594;</span>
+    </a>
+
+    <!-- EDIT MORE SERVICE: Portfolio -->
+    <a class="more-service-card" href="portfolio-design.html">
+      <span class="more-service-icon">&#128193;</span>
+      <h3>PORTFOLIO DESIGN</h3>
+      <p>Professional portfolios that organise your work into a stronger sales asset.</p>
+      <span class="service-arrow">VIEW DETAILS &#8594;</span>
+    </a>
+
+    <!-- EDIT MORE SERVICE: Voice Call Campaign -->
+    <a class="more-service-card" href="voice-call.html">
+      <span class="more-service-icon">&#128222;</span>
+      <h3>VOICE CALL CAMPAIGN</h3>
+      <p>Outbound calling workflows for leads, promotions, reminders and follow-ups.</p>
+      <span class="service-arrow">VIEW DETAILS &#8594;</span>
+    </a>
+
+    <!-- EDIT MORE SERVICE: Promotion Video -->
+    <a class="more-service-card" href="shooting.html">
+      <span class="more-service-icon">&#127909;</span>
+      <h3>SHOOTING</h3>
+      <p>Professional photo and video shoots planned around your brand, products and campaigns.</p>
+      <span class="service-arrow">VIEW DETAILS &#8594;</span>
+    </a>
+
+    <!-- EDIT MORE SERVICE: Promotion Photography -->
+    <a class="more-service-card" href="editing.html">
+      <span class="more-service-icon">&#128187;</span>
+      <h3>EDITING</h3>
+      <p>Reels, ads and brand videos edited with clear pacing, graphics, sound and colour.</p>
+      <span class="service-arrow">VIEW DETAILS &#8594;</span>
+    </a>
+
+  </div>
+
+  <!-- TECHNICAL APPROACHES: Replace the old Technical Skills section with this editable list. -->
+  <div class="tech-approaches">
+    <div class="tech-approach-title">TECHNICAL APPROACHES</div>
+    <ul class="tech-approach-list">
+      <!-- EDIT APPROACH ITEMS HERE -->
+      <li>Meta Ads</li>
+      <li>Google Ads</li>
+      <li>SEO</li>
+      <li>Analytics &amp; Reporting</li>
+      <li>Content Strategy</li>
+      <li>Creative Production</li>
+      <li>Conversion Tracking</li>
+      <li>Landing Page Strategy</li>
+      <li>WhatsApp Lead Flow</li>
+      <li>AI-Assisted Creative Workflows</li>
+      <li>Video Editing</li>
+      <li>Brand Design Systems</li>
+    </ul>
+    <a class="tech-details-btn" href="more-information.html">LOOK IN DETAIL</a>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects-section" id="projects">
+  <p class="section-label">PORTFOLIO</p>
+  <h2 class="section-title">OUR WORK</h2>
+  <!-- Add a YouTube URL to any project card: data-youtube-url="https://www.youtube.com/watch?v=VIDEO_ID". Leave empty to keep the existing local image/video. -->
+
+  <!-- â•â• ROW 1 â•â• -->
+
+  <!-- â•â• ROW 1 â•â• -->
+  <div class="projects-grid">
+
+    <!-- P01 VIDEO -->
+    <div class="project-card" data-youtube-url="">
+      <div class="project-media">
+        <video src="project 1.mp4" controls preload="metadata"></video>
+        <!--
+          HOW TO ADD MEDIA:
+          â€¢ Local video : <video src="your-file.mp4" controls preload="metadata"></video>
+          â€¢ Local image : <img src="your-image.jpg" alt="Project 01">
+          â€¢ Remove the <video> tag above and paste your chosen element.
+        -->
+        <div class="project-media-overlay"></div>
+        <div class="media-badge video">&#9654; Video</div>
+      </div>
+      <div class="project-info">
+        <div class="project-info-left">
+          <div class="project-type"><span class="project-type-dot"></span>Video &#183; Cinematography</div>
+          <div class="project-title">Project 01</div>
+          <div class="project-desc">Add your description here</div>
+        </div>
+        <div class="project-tag">VIDEO</div>
+      </div>
+    </div>
+
+    <!-- P02 IMAGE -->
+    <div class="project-card" data-youtube-url="">
+      <div class="project-media">
+        <img src="image 1.JPEG" alt="Project 02">
+        <!--
+          Replace <img src="project 2.jpg"> with your image file name.
+          Or swap with a <video> tag for a video.
+        -->
+        <div class="project-media-overlay"></div>
+        <div class="media-badge image">&#128444; Image</div>
+      </div>
+      <div class="project-info">
+        <div class="project-info-left">
+          <div class="project-type"><span class="project-type-dot img"></span></div>
+          <div class="project-title">Project 02</div>
+          <div class="project-desc">Campaign shoot â€” add your description</div>
+        </div>
+        <div class="project-tag img">IMAGE</div>
+      </div>
+    </div>
+
+    <!-- P03 VIDEO -->
+    <div class="project-card" data-youtube-url="">
+      <div class="project-media">
+        <video src="project 2.mp4" controls preload="metadata"></video>
+        <div class="project-media-overlay"></div>
+        <div class="media-badge video">&#9654; Video</div>
+      </div>
+      <div class="project-info">
+        <div class="project-info-left">
+          <div class="project-type"><span class="project-type-dot"></span>Video &#183; Editing</div>
+          <div class="project-title">Project 03</div>
+          <div class="project-desc">Reel / edit â€” add your description</div>
+        </div>
+        <div class="project-tag">VIDEO</div>
+      </div>
+    </div>
+
+  </div><!-- /ROW 1 -->
+
+  <!-- â•â• ROW 2 â•â• -->
+  <div class="projects-grid">
+
+    <!-- P04 IMAGE -->
+    <div class="project-card" data-youtube-url="">
+      <div class="project-media">
+        <img src="image 2.JPEG" alt="">
+        <div class="project-media-overlay"></div>
+        <div class="media-badge image">&#128444; Image</div>
+      </div>
+      <div class="project-info">
+        <div class="project-info-left">
+          <div class="project-type"><span class="project-type-dot img"></span>writer</div>
+          <div class="project-title">Project 04</div>
+          <div class="project-desc">Branding / digital assets â€” add description</div>
+        </div>
+        <div class="project-tag img">IMAGE</div>
+      </div>
+    </div>
+
+    <!-- P05 VIDEO -->
+    <div class="project-card" data-youtube-url="">
+      <div class="project-media">
+        <video src="project 3.mp4" controls preload="metadata"></video>
+        <div class="project-media-overlay"></div>
+        <div class="media-badge video">&#9654; Video</div>
+      </div>
+      <div class="project-info">
+        <div class="project-info-left">
+          <div class="project-type"><span class="project-type-dot"></span>trec shoot & edit </div>
+          <div class="project-title">Project 05</div>
+          <div class="project-desc">Performance ad / social reel â€” add description</div>
+        </div>
+        <div class="project-tag">VIDEO</div>
+      </div>
+    </div>
+
+    <!-- P06 IMAGE -->
+    <div class="project-card" data-youtube-url="">
+      <div class="project-media">
+        <img src="image 3.jpg" alt="Project 06">
+        <div class="project-media-overlay"></div>
+        <div class="media-badge image">&#128444; Image</div>
+      </div>
+      <div class="project-info">
+        <div class="project-info-left">
+          <div class="project-type"><span class="project-type-dot img"></span>weadingshoot</div>
+          <div class="project-title">Project 06</div>
+          <div class="project-desc">Social content / campaign â€” add description</div>
+        </div>
+        <div class="project-tag img">IMAGE</div>
+      </div>
+    </div>
+
+  </div><!-- /ROW 2 -->
+
+  <!-- â•â• ROW 3 â•â• -->
+  <div class="projects-grid">
+
+    <!-- P07 VIDEO -->
+    <div class="project-card" data-youtube-url="">
+      <div class="project-media">
+        <video src="project 4.mp4" controls preload="metadata"></video>
+        <div class="project-media-overlay"></div>
+        <div class="media-badge video">&#9654; Video</div>
+      </div>
+      <div class="project-info">
+        <div class="project-info-left">
+          <div class="project-type"><span class="project-type-dot"></span>Video &#183; Cinematography</div>
+          <div class="project-title">Project 07</div>
+          <div class="project-desc">Add your description here</div>
+        </div>
+        <div class="project-tag">VIDEO</div>
+      </div>
+    </div>
+
+    <!-- P08 IMAGE -->
+    <div class="project-card" data-youtube-url="">
+      <div class="project-media">
+        <img src="image 3.jpg" alt="Project 08">
+        <div class="project-media-overlay"></div>
+        <div class="media-badge image">&#128444; Image</div>
+      </div>
+      <div class="project-info">
+        <div class="project-info-left">
+          <div class="project-type"><span class="project-type-dot img"></span>Photography</div>
+          <div class="project-title">Project 08</div>
+          <div class="project-desc">Add your description here</div>
+        </div>
+        <div class="project-tag img">IMAGE</div>
+      </div>
+    </div>
+
+    <!-- P09 VIDEO -->
+    <div class="project-card" data-youtube-url="">
+      <div class="project-media">
+        <video src="project 5.mp4" controls preload="metadata"></video>
+        <div class="project-media-overlay"></div>
+        <div class="media-badge video">&#9654; Video</div>
+      </div>
+      <div class="project-info">
+        <div class="project-info-left">
+          <div class="project-type"><span class="project-type-dot"></span>Video &#183; Editing</div>
+          <div class="project-title">Project 09</div>
+          <div class="project-desc">Add your description here</div>
+        </div>
+        <div class="project-tag">VIDEO</div>
+      </div>
+    </div>
+
+  </div><!-- /ROW 3 -->
+
+  <!-- â•â• ROW 4 â•â• -->
+  <div class="projects-grid">
+
+    <!-- P10 IMAGE -->
+    <div class="project-card" data-youtube-url="">
+      <div class="project-media">
+        <img src="img 4.JPEG" alt="Project 10">
+        <div class="project-media-overlay"></div>
+        <div class="media-badge image">&#128444; Image</div>
+      </div>
+      <div class="project-info">
+        <div class="project-info-left">
+          <div class="project-type"><span class="project-type-dot img"></span>Graphic Design</div>
+          <div class="project-title">Project 10</div>
+          <div class="project-desc">Add your description here</div>
+        </div>
+        <div class="project-tag img">IMAGE</div>
+      </div>
+    </div>
+
+    <!-- P11 VIDEO -->
+    <div class="project-card" data-youtube-url="">
+      <div class="project-media">
+        <video src="project 6.mp4" controls preload="metadata"></video>
+        <div class="project-media-overlay"></div>
+        <div class="media-badge video">&#9654; Video</div>
+      </div>
+      <div class="project-info">
+        <div class="project-info-left">
+          <div class="project-type"><span class="project-type-dot"></span>Video &#183; Marketing</div>
+          <div class="project-title">Project 11</div>
+          <div class="project-desc">Add your description here</div>
+        </div>
+        <div class="project-tag">VIDEO</div>
+      </div>
+    </div>
+
+    <!-- P12 IMAGE -->
+    <div class="project-card" data-youtube-url="">
+      <div class="project-media">
+        <img src="" alt="Project 12">
+        <div class="project-media-overlay"></div>
+        <div class="media-badge image">&#128444; Image</div>
+      </div>
+      <div class="project-info">
+        <div class="project-info-left">
+          <div class="project-type"><span class="project-type-dot img"></span>Social Media</div>
+          <div class="project-title">Project 12</div>
+          <div class="project-desc">Add your description here</div>
+        </div>
+        <div class="project-tag img">IMAGE</div>
+      </div>
+    </div>
+
+  </div><!-- /ROW 4 -->
+
+  </div><!-- /close projects-grid row 5 (empty) -->
+</section>
+
+<!-- BRAND + PORTFOLIO PROMOTION -->
+<!-- EASY EDIT: Each promotion card below opens its own dedicated service page. -->
+<section class="promotion-section" id="promotion">
+  <p class="section-label">SHOWCASE &amp; PROMOTION</p>
+  <h2 class="section-title">BRAND CATALOGUES &amp; PORTFOLIO PROMOTION</h2>
+  <div class="promotion-grid">
+
+    <!-- EDIT PROMOTION CARD 01 -->
+    <a class="promotion-card" href="catalogue-design.html">
+      <span class="promotion-icon">&#128214;</span>
+      <h3>BRAND CATALOGUES</h3>
+      <p>Professional catalogues that present products, services, packages and brand information in a clear sales format.</p>
+      <span class="service-arrow">EXPLORE SERVICE &#8594;</span>
+    </a>
+
+    <!-- EDIT PROMOTION CARD 02 -->
+    <a class="promotion-card" href="portfolio-video.html">
+      <span class="promotion-icon">&#127916;</span>
+      <h3>PORTFOLIO PROMOTION VIDEOS</h3>
+      <p>Fast, engaging videos that showcase your work, process, results and strongest projects for social media and campaigns.</p>
+      <span class="service-arrow">EXPLORE SERVICE &#8594;</span>
+    </a>
+
+    <!-- EDIT PROMOTION CARD 03 -->
+    <a class="promotion-card" href="portfolio-photo.html">
+      <span class="promotion-icon">&#128247;</span>
+      <h3>PORTFOLIO PROMOTION PHOTOS</h3>
+      <p>Clean project photography created for websites, catalogues, social media, ads and client presentations.</p>
+      <span class="service-arrow">EXPLORE SERVICE &#8594;</span>
+    </a>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <h2 class="section-title">READY TO MAKE AN IMPACT?</h2>
+  <p>Let's build something extraordinary together. Book a free consultation today.</p>
+  <button class="btn-primary" onclick="openModal()">Let's Start Your Project</button>
+</section>
+
+<a class="whatsapp-float" href="https://wa.me/918306940375" target="_blank" rel="noopener noreferrer" aria-label="Chat with Nhova Digital Marketing on WhatsApp">
+  <span class="whatsapp-icon" aria-hidden="true">&#128172;</span>
+  <span>WhatsApp</span>
+</a>
+
+<footer>
+  Â© 2026 NHOVA DIGITAL MARKETING â€” ALL RIGHTS RESERVED
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="handleOverlayClick(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">&#10005;</button>
+    <h2>LET'S START YOUR PROJECT</h2>
+    <p>Fill in your details and we'll get back to you within 24 hours.</p>
+    <div class="form-group">
+      <label>FULL NAME</label>
+      <input type="text" id="f-name" placeholder="Your name">
+    </div>
+    <div class="form-group">
+      <label>EMAIL ADDRESS</label>
+      <input type="email" id="f-email" placeholder="your@email.com">
+    </div>
+    <div class="form-group">
+      <label>SERVICE</label>
+      <select id="f-service">
+        <option value="">Select a service</option>
+        <!-- EDIT SERVICE OPTIONS HERE: Keep these names aligned with your service detail pages. -->
+        <option>Shooting</option>
+        <option>Editing</option>
+        <option>Performance Marketing</option>
+        <option>Graphic Design</option>
+        <option>Social Media Management</option>
+        <option>Voice Call Campaign</option>
+        <option>Brand Logo Design</option>
+        <option>Brand Card Design</option>
+        <option>Posters</option>
+        <option>Catalogue Design</option>
+        <option>Portfolio Design</option>
+        <option>Portfolio Promotion Video</option>
+        <option>Portfolio Promotion Photography</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>PHONE NUMBER</label>
+      <input type="tel" id="f-phone" placeholder="+91 XXXXX XXXXX">
+    </div>
+    <div class="form-group">
+      <label>MESSAGE</label>
+      <textarea id="f-msg" rows="3" placeholder="Tell us about your project..."></textarea>
+    </div>
+    <button class="btn-primary" style="width:100%;margin-top:8px;" onclick="submitForm()">
+      CONFIRM BOOKING
+    </button>
+  </div>
+</div>
+
+<script>
+// â”€â”€ Cursor â”€â”€
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+
+// Start off-screen so it doesn't flash at top-left
+cursor.style.left = '-100px';
+cursor.style.top = '-100px';
+ring.style.left = '-100px';
+ring.style.top = '-100px';
+
+let mouseX = -100, mouseY = -100;
+let ringX = -100, ringY = -100;
+const ringLag = 0.12;
+
+document.addEventListener('mousemove', e => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+  cursor.style.left = mouseX + 'px';
+  cursor.style.top = mouseY + 'px';
+});
+
+// Smooth ring follow via rAF
+function animateRing() {
+  ringX += (mouseX - ringX) * ringLag;
+  ringY += (mouseY - ringY) * ringLag;
+  ring.style.left = ringX + 'px';
+  ring.style.top = ringY + 'px';
+  requestAnimationFrame(animateRing);
+}
+animateRing();
+
+document.querySelectorAll('button, a, .service-card, .more-service-card, .promotion-card, .project-card, .tech-icon-img').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    cursor.style.transform = 'translate(-50%,-50%) scale(2.2)';
+    cursor.style.background = 'var(--purple-light)';
+    cursor.style.boxShadow = '0 0 20px var(--purple-light)';
+    ring.style.transform = 'translate(-50%,-50%) scale(1.5)';
+    ring.style.opacity = '0.3';
+    ring.style.borderColor = 'var(--pink)';
+  });
+  el.addEventListener('mouseleave', () => {
+    cursor.style.transform = 'translate(-50%,-50%) scale(1)';
+    cursor.style.background = 'var(--pink)';
+    cursor.style.boxShadow = '0 0 12px var(--pink)';
+    ring.style.transform = 'translate(-50%,-50%) scale(1)';
+    ring.style.opacity = '0.6';
+    ring.style.borderColor = 'var(--purple-light)';
+  });
+});
+
+
+// â”€â”€ Stars + Shooting Star Shower â”€â”€
+const canvas = document.getElementById('stars-canvas');
+const ctx = canvas.getContext('2d');
+let stars = [], shooters = [];
+
+function initStars() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  stars = Array.from({length: 300}, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    r: Math.random() * 1.8 + 0.2,
+    a: Math.random(),
+    speed: Math.random() * 0.5 + 0.1,
+    dir: Math.random() > 0.5 ? 1 : -1
+  }));
+}
+
+function createShooter() {
+  const angle = Math.PI / 4 + (Math.random() - 0.5) * 0.5;
+  const speed = Math.random() * 14 + 8;
+  return {
+    x: Math.random() * canvas.width * 1.2 - canvas.width * 0.1,
+    y: Math.random() * canvas.height * 0.5 - 80,
+    vx: Math.cos(angle) * speed,
+    vy: Math.sin(angle) * speed,
+    len: Math.random() * 160 + 80,
+    width: Math.random() * 2 + 0.5,
+    alpha: 1,
+    fade: Math.random() * 0.015 + 0.006,
+    color: Math.random() > 0.5 ? '255,31,45' : '255,77,90'
+  };
+}
+
+function spawnShooters() {
+  if (shooters.length < 18) shooters.push(createShooter());
+  setTimeout(spawnShooters, Math.random() * 250 + 100);
+}
+spawnShooters();
+
+function drawStars() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  stars.forEach(s => {
+    s.a += s.speed * 0.008 * s.dir;
+    if (s.a > 1 || s.a < 0) s.dir *= -1;
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(255,255,255,${s.a})`;
+    ctx.fill();
+  });
+
+  shooters = shooters.filter(s => s.alpha > 0);
+  shooters.forEach(s => {
+    const angle = Math.atan2(s.vy, s.vx);
+    const tailX = s.x - Math.cos(angle) * s.len;
+    const tailY = s.y - Math.sin(angle) * s.len;
+
+    const grad = ctx.createLinearGradient(tailX, tailY, s.x, s.y);
+    grad.addColorStop(0, `rgba(${s.color},0)`);
+    grad.addColorStop(0.4, `rgba(${s.color},${s.alpha * 0.3})`);
+    grad.addColorStop(1, `rgba(255,255,255,${s.alpha})`);
+
+    ctx.beginPath();
+    ctx.moveTo(tailX, tailY);
+    ctx.lineTo(s.x, s.y);
+    ctx.strokeStyle = grad;
+    ctx.lineWidth = s.width;
+    ctx.lineCap = 'round';
+    ctx.stroke();
+
+    const glow = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, s.width * 4);
+    glow.addColorStop(0, `rgba(255,255,255,${s.alpha * 0.9})`);
+    glow.addColorStop(0.4, `rgba(${s.color},${s.alpha * 0.5})`);
+    glow.addColorStop(1, `rgba(${s.color},0)`);
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.width * 4, 0, Math.PI * 2);
+    ctx.fillStyle = glow;
+    ctx.fill();
+
+    s.x += s.vx;
+    s.y += s.vy;
+    s.alpha -= s.fade;
+    if (s.x > canvas.width + 100 || s.y > canvas.height + 100) s.alpha = 0;
+  });
+
+  requestAnimationFrame(drawStars);
+}
+
+window.addEventListener('resize', initStars);
+initStars();
+drawStars();
+
+// â”€â”€ Counter animation â”€â”€
+function animateCounters() {
+  document.querySelectorAll('.stat-number').forEach(el => {
+    const target = parseInt(el.dataset.target);
+    const suffix = target >= 100 ? '+' : '+';
+    let current = 0;
+    const step = Math.ceil(target / 60);
+    const timer = setInterval(() => {
+      current = Math.min(current + step, target);
+      el.textContent = current + suffix;
+      if (current >= target) clearInterval(timer);
+    }, 30);
+  });
+}
+setTimeout(animateCounters, 1400);
+
+// ======================================================================
+// YOUTUBE PROJECTS â€” EASY EDIT
+// Add data-youtube-url="https://www.youtube.com/watch?v=VIDEO_ID"
+// to any .project-card. Leave it empty when no YouTube video exists.
+// ======================================================================
+function getYouTubeId(value) {
+  if (!value) return '';
+  try {
+    const url = new URL(value);
+    if (url.hostname.includes('youtu.be')) return url.pathname.replace('/', '').split(/[?&]/)[0];
+    if (url.hostname.includes('youtube.com')) {
+      if (url.pathname === '/watch') return url.searchParams.get('v') || '';
+      if (url.pathname.startsWith('/shorts/')) return url.pathname.split('/')[2] || '';
+      if (url.pathname.startsWith('/embed/')) return url.pathname.split('/')[2] || '';
+    }
+  } catch (_) {}
+  return '';
+}
+
+document.querySelectorAll('.project-card[data-youtube-url]').forEach(card => {
+  const youtubeUrl = card.dataset.youtubeUrl.trim();
+  if (!youtubeUrl) return;
+  const id = getYouTubeId(youtubeUrl);
+  if (!id) return;
+  const media = card.querySelector('.project-media');
+  if (!media) return;
+
+  const iframe = document.createElement('iframe');
+  iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}?rel=0&modestbranding=1`;
+  iframe.title = card.querySelector('.project-title')?.textContent?.trim() || 'Nhova Digital Marketing project';
+  iframe.loading = 'lazy';
+  iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+  iframe.allowFullscreen = true;
+
+  media.innerHTML = '';
+  media.appendChild(iframe);
+  const badge = document.createElement('div');
+  badge.className = 'youtube-badge';
+  badge.textContent = '\u25B6 YOUTUBE';
+  media.appendChild(badge);
+});
+
+// â”€â”€ Modal â”€â”€
+function openModal() {
+  document.getElementById('modal-overlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('modal-overlay')) closeModal();
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); closeDrawer(); } });
+
+// ======================================================================
+// WEBSITE CONFIG â€” EASY EDIT AREA
+// Change the WhatsApp number here. Keep country code and no + sign.
+// ======================================================================
+// EDIT WHATSAPP HERE: country code + number, without the + sign.
+const WP_NUMBER = '918306940375';
+// KEEP THIS EMAILJS SERVICE ID UNCHANGED unless you create a new EmailJS service.
+const EMAILJS_SERVICE_ID  = 'hasanlucky21evolve';
+const EMAILJS_TEMPLATE_ID = '__ejs-test-mail-service__';
+
+function showToast(msg, success = true) {
+  const toast = document.createElement('div');
+  toast.textContent = msg;
+  Object.assign(toast.style, {
+    position: 'fixed', bottom: '32px', left: '50%',
+    transform: 'translateX(-50%)',
+    background: success
+      ? 'linear-gradient(135deg, #d60018, #8f0010)'
+      : 'linear-gradient(135deg, #e53e3e, #c53030)',
+    color: '#fff', padding: '14px 32px', borderRadius: '999px',
+    fontFamily: 'Rajdhani, sans-serif', fontWeight: '700',
+    fontSize: '0.95rem', letterSpacing: '0.06em',
+    zIndex: '9999', boxShadow: '0 8px 32px rgba(214,0,24,0.5)',
+    transition: 'opacity 0.4s', opacity: '1', whiteSpace: 'nowrap'
+  });
+  document.body.appendChild(toast);
+  setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 400); }, 4000);
+}
+
+function sendWhatsApp(name, phone, service, msg) {
+  const text = `\uD83C\uDF1F *New Appointment - Nhova Digital Marketing*\n\n` +
+    `\uD83D\uDC64 *Name:* ${name}\n` +
+    `\uD83D\uDCDE *Phone:* ${phone || 'Not provided'}\n` +
+    `\uD83C\uDFAF *Service:* ${service}\n` +
+    `\uD83D\uDCAC *Message:* ${msg || 'No message'}\n\n` +
+    `_Submitted via Nhova Digital Marketing website_`;
+  const url = `https://wa.me/${WP_NUMBER}?text=${encodeURIComponent(text)}`;
+  window.open(url, '_blank');
+}
+
+async function submitForm() {
+  const name    = document.getElementById('f-name').value.trim();
+  const email   = document.getElementById('f-email').value.trim();
+  const phone   = document.getElementById('f-phone').value.trim();
+  const service = document.getElementById('f-service').value;
+  const msg     = document.getElementById('f-msg').value.trim();
+
+  // â”€â”€ Field highlight helper â”€â”€
+  function highlight(id) {
+    const el = document.getElementById(id);
+    el.style.borderColor = '#e53e3e';
+    el.style.boxShadow = '0 0 0 3px rgba(229,62,62,0.2)';
+    setTimeout(() => { el.style.borderColor = ''; el.style.boxShadow = ''; }, 2500);
+  }
+
+  // â”€â”€ Validation â”€â”€
+  if (!name)    { showToast('\u26A0 Please enter your full name.', false);        highlight('f-name');    return; }
+  if (!email)   { showToast('\u26A0 Please enter your email address.', false);    highlight('f-email');   return; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                  showToast('\u26A0 Please enter a valid email address.', false);  highlight('f-email');   return; }
+  if (!service) { showToast('\u26A0 Please select a service.', false);            highlight('f-service'); return; }
+
+  // â”€â”€ Disable button & show loading â”€â”€
+  const btn = document.querySelector('#modal-overlay .btn-primary');
+  const originalText = btn.textContent;
+  btn.textContent = 'â³ SENDING...';
+  btn.disabled = true;
+  btn.style.opacity = '0.7';
+  btn.style.cursor = 'not-allowed';
+
+  let emailOk = false;
+
+  // â”€â”€ 1. Send Email via EmailJS â”€â”€
+  // â”€â”€ 2. Reset button & form â”€â”€
+  btn.textContent = originalText;
+  btn.disabled = false;
+  btn.style.opacity = '1';
+  btn.style.cursor = 'none';
+
+  // â”€â”€ 3. Close modal & clear fields â”€â”€
+  closeModal();
+  ['f-name','f-email','f-phone','f-service','f-msg'].forEach(id => {
+    document.getElementById(id).value = '';
+  });
+
+  // â”€â”€ 4. Toast feedback â”€â”€
+  showToast('\u2705 Appointment booked! WhatsApp opening...', true);
+
+  // â”€â”€ 5. Open WhatsApp with booking info â”€â”€
+  setTimeout(() => sendWhatsApp(name, phone, service, msg), 900);
+}
+
+function scrollToaboutme() {
+  document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
+}
+function scrollToServices() {
+  document.getElementById('services').scrollIntoView({ behavior: 'smooth' });
+}
+
+// â”€â”€ Mobile Drawer â”€â”€
+function toggleDrawer() {
+  const drawer = document.getElementById('navDrawer');
+  const toggle = document.getElementById('navToggle');
+  const open = drawer.classList.toggle('open');
+  toggle.classList.toggle('open', open);
+  toggle.setAttribute('aria-expanded', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+}
+function closeDrawer() {
+  const drawer = document.getElementById('navDrawer');
+  const toggle = document.getElementById('navToggle');
+  drawer.classList.remove('open');
+  toggle.classList.remove('open');
+  toggle.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
+}
+// Escape key closes both modal and drawer (see handler above)
+</script>
+</body>
+</html>

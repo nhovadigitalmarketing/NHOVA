@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Technical approaches used by Nhova Digital Marketing across advertising, measurement, content and brand systems.">
+<title>Technical Approaches | Nhova Digital Marketing</title>
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="apple-touch-icon" href="logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--red:#ff1f2d;--red-dark:#8f0010;--red-light:#ff4d5a;--bg:#08080b;--panel:rgba(255,255,255,.04);--white:#fff;--muted:rgba(255,255,255,.64);--line:rgba(255,77,90,.2)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Rajdhani',sans-serif;background:var(--bg);color:var(--white);min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 8% 8%,rgba(255,31,45,.14),transparent 30%),radial-gradient(circle at 92% 82%,rgba(143,0,16,.16),transparent 34%)}
+a{color:inherit}
+.container{width:min(1160px,calc(100% - 40px));margin:auto;position:relative;z-index:1}
+.nav{height:78px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.08)}
+.logo{width:135px;flex-shrink:0}.logo img{width:100%;height:54px;object-fit:contain;border-radius:6px}
+.back{border:1px solid var(--line);border-radius:999px;padding:10px 18px;text-decoration:none;font-weight:700;letter-spacing:.05em;transition:border-color .2s,color .2s}
+.back:hover{border-color:var(--red);color:var(--red-light)}
+.hero{padding:86px 0 58px;text-align:center}
+.eyebrow{color:var(--red-light);font:700 .7rem 'Orbitron',sans-serif;letter-spacing:.25em;margin-bottom:18px}
+.hero h1{font:900 clamp(2.25rem,6vw,5.2rem) 'Orbitron',sans-serif;line-height:1.04;max-width:950px;margin:auto}
+.hero h1 span{color:var(--red)}
+.hero p{max-width:760px;margin:24px auto 0;color:var(--muted);font-size:1.08rem;line-height:1.8}
+.approaches{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;padding-bottom:72px}
+.approach-card{display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:28px 26px;min-width:0;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
+.approach-card:hover{transform:translateY(-5px);border-color:rgba(255,31,45,.62);box-shadow:0 14px 40px rgba(214,0,24,.18)}
+.card-number{color:var(--red-light);font:700 .66rem 'Orbitron',sans-serif;letter-spacing:.16em;margin-bottom:18px}
+.approach-card h2{font:700 1.02rem 'Orbitron',sans-serif;letter-spacing:.05em;line-height:1.35;margin-bottom:14px}
+.approach-card p{color:var(--muted);font-size:.98rem;line-height:1.7;margin-bottom:22px}
+.benefits{margin-top:auto;padding-top:18px;border-top:1px solid rgba(255,77,90,.16)}
+.benefits h3{color:var(--red-light);font:700 .67rem 'Orbitron',sans-serif;letter-spacing:.13em;margin-bottom:12px}
+.benefits ul{display:grid;gap:8px;list-style:none;color:rgba(255,255,255,.68);font-size:.91rem;line-height:1.45}
+.benefits li{position:relative;padding-left:16px}
+.benefits li::before{content:'+';position:absolute;left:0;color:var(--red-light);font-weight:700}
+.bottom-cta{border-top:1px solid rgba(255,77,90,.16);padding:40px 0 76px;text-align:center}
+.bottom-cta p{color:var(--muted);font-size:1rem;margin-bottom:20px}
+.btn-primary{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:14px 28px;border-radius:999px;background:linear-gradient(135deg,#d60018,var(--red-dark));color:var(--white);text-decoration:none;font-size:.95rem;font-weight:700;letter-spacing:.07em;box-shadow:0 4px 28px rgba(214,0,24,.4);transition:transform .2s,box-shadow .25s}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 36px rgba(255,31,45,.55)}
+@media (max-width:900px){.approaches{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){.container{width:min(100% - 32px,460px)}.nav{height:70px}.logo{width:min(112px,100%)}.logo img{height:46px}.back{padding:9px 12px;font-size:.82rem}.hero{padding:64px 0 42px}.hero h1{font-size:clamp(2rem,11vw,3.2rem)}.hero p{font-size:1rem;line-height:1.65}.approaches{grid-template-columns:1fr;gap:16px;padding-bottom:52px}.approach-card{padding:24px 22px}.bottom-cta{padding:30px 0 56px}.btn-primary{width:100%;padding-inline:18px}}
+</style>
+</head>
+<body>
+<div class="container">
+<header class="nav">
+<a class="logo" href="index.html" aria-label="Nhova Digital Marketing home"><img src="logo.png" alt="Nhova Digital Marketing"></a>
+<a class="back" href="index.html#services">BACK TO SERVICES</a>
+</header>
+<main>
+<section class="hero">
+<div class="eyebrow">NHOVA DIGITAL MARKETING</div>
+<h1>TECHNICAL <span>APPROACHES</span></h1>
+<p>Our approach connects channel strategy, creative work, measurement and customer journeys so each marketing activity has a clear purpose and an observable next step.</p>
+</section>
+<section class="approaches" aria-label="Technical approaches">
+<article class="approach-card"><div class="card-number">01 / PAID SOCIAL</div><h2>Meta Ads</h2><p>Campaigns on Facebook and Instagram organised around audience intent, relevant creative and a defined conversion goal.</p><div class="benefits"><h3>BENEFITS</h3><ul><li>Structured audience and campaign planning</li><li>Creative testing tied to the offer</li><li>Clearer paths from attention to enquiry</li></ul></div></article>
+<article class="approach-card"><div class="card-number">02 / SEARCH</div><h2>Google Ads</h2><p>Search and display activity shaped around what people are looking for, the offer being presented and the action that matters.</p><div class="benefits"><h3>BENEFITS</h3><ul><li>Intent-led campaign organisation</li><li>Relevant ad and landing page alignment</li><li>Useful data for budget decisions</li></ul></div></article>
+<article class="approach-card"><div class="card-number">03 / ORGANIC DISCOVERY</div><h2>SEO</h2><p>Search optimisation that improves how clearly a website communicates its topics, pages and usefulness to searchers.</p><div class="benefits"><h3>BENEFITS</h3><ul><li>Stronger information structure</li><li>More discoverable service content</li><li>Better alignment with search intent</li></ul></div></article>
+<article class="approach-card"><div class="card-number">04 / MEASUREMENT</div><h2>Analytics &amp; Reporting</h2><p>Reporting that turns available website and campaign data into understandable observations, trends and next actions.</p><div class="benefits"><h3>BENEFITS</h3><ul><li>One clearer view of performance signals</li><li>Less time spent interpreting raw data</li><li>Decisions grounded in observed behaviour</li></ul></div></article>
+<article class="approach-card"><div class="card-number">05 / PLANNING</div><h2>Content Strategy</h2><p>A practical content direction that connects audience questions, business priorities, formats and a consistent publishing purpose.</p><div class="benefits"><h3>BENEFITS</h3><ul><li>More consistent topics and messaging</li><li>Content mapped to audience needs</li><li>Less guesswork during production</li></ul></div></article>
+<article class="approach-card"><div class="card-number">06 / PRODUCTION</div><h2>Creative Production</h2><p>Planned visual and written assets designed to communicate an offer clearly across the channels where an audience encounters it.</p><div class="benefits"><h3>BENEFITS</h3><ul><li>Consistent creative direction</li><li>Assets suited to each channel</li><li>Clearer communication of the offer</li></ul></div></article>
+<article class="approach-card"><div class="card-number">07 / ATTRIBUTION</div><h2>Conversion Tracking</h2><p>Configuration and review of events that record meaningful actions such as form submissions, calls, purchases or lead chats.</p><div class="benefits"><h3>BENEFITS</h3><ul><li>Better visibility into important actions</li><li>More useful campaign optimisation signals</li><li>Fewer decisions based only on reach</li></ul></div></article>
+<article class="approach-card"><div class="card-number">08 / EXPERIENCE</div><h2>Landing Page Strategy</h2><p>Page planning that aligns the visitor's intent, the message, the proof and the conversion action in a focused journey.</p><div class="benefits"><h3>BENEFITS</h3><ul><li>Less friction between ad and action</li><li>Stronger message and offer clarity</li><li>Pages easier to test and improve</li></ul></div></article>
+<article class="approach-card"><div class="card-number">09 / LEAD JOURNEY</div><h2>WhatsApp Lead Flow</h2><p>Conversation journeys that guide an interested person from an ad or page into a clear WhatsApp enquiry and follow-up process.</p><div class="benefits"><h3>BENEFITS</h3><ul><li>More direct lead communication</li><li>Clearer prompts for the first message</li><li>Better continuity from campaign to contact</li></ul></div></article>
+<article class="approach-card"><div class="card-number">10 / WORKFLOW</div><h2>AI-Assisted Creative Workflows</h2><p>Carefully directed AI support for ideation, variations and production tasks, with human review guiding accuracy, tone and final quality.</p><div class="benefits"><h3>BENEFITS</h3><ul><li>Faster exploration of creative directions</li><li>More organised variation development</li><li>Human oversight at final approval</li></ul></div></article>
+<article class="approach-card"><div class="card-number">11 / MOTION</div><h2>Video Editing</h2><p>Editing that shapes footage into a clear sequence with purposeful pacing, readable text, sound and a format suited to its destination.</p><div class="benefits"><h3>BENEFITS</h3><ul><li>Stronger narrative flow</li><li>Platform-ready versions</li><li>More focused communication in short formats</li></ul></div></article>
+<article class="approach-card"><div class="card-number">12 / IDENTITY</div><h2>Brand Design Systems</h2><p>Reusable rules for type, colour, layout and visual elements that help a brand remain recognisable across repeated touchpoints.</p><div class="benefits"><h3>BENEFITS</h3><ul><li>More consistent brand expression</li><li>Faster creation of aligned assets</li><li>A clearer visual foundation for growth</li></ul></div></article>
+</section>
+<section class="bottom-cta">
+<p>Return to the full range of NHOVA services.</p>
+<a class="btn-primary" href="index.html#services">BACK TO HOME SERVICES</a>
+</section>
+</main>
+</div>
+</body>
+</html>
